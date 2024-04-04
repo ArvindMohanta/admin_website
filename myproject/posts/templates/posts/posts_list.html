@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="{% static 'js/main.js' %}" defer></script>
+  </head>
+  <body>
+    <nav>
+      <a href="/">🏠</a>| <a href="/about">👌</a>| <a href="/posts">📰</a>| |
+      <a href="{% url 'users:register' %}">
+        <span
+          role="img"
+          aria-label="User Registration"
+          title="User Registration"
+          >🚀</span
+        >
+      </a>
+    </nav>
+    <main>
+      <section>
+        <h1>Posts</h1>
+        {% for post in posts %}
+        <article class="post">
+          <h2>
+            <a href="{% url 'posts:page' slug=post.slug %}"> {{post.title}} </a>
+          </h2>
+          <p>{{ post.date }}</p>
+          <p>{{ post.body }}</p>
+        </article>
+        {% endfor %}
+      </section>
+    </main>
+  </body>
+</html>
